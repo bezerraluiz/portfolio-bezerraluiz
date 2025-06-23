@@ -71,17 +71,15 @@ const Technologies = () => {
       name: "Maven",
       icon: "https://cdn.simpleicons.org/apachemaven/C71A36",
       category: "Backend",
-    },
-
-    // Database
+    },    // Database
     {
       name: "PostgreSQL",
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
       category: "Database",
     },
     {
-      name: "Supabase",
-      icon: "https://cdn.simpleicons.org/supabase/3ECF8E",
+      name: "Apache Spark",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg",
       category: "Database",
     },
 
