@@ -104,7 +104,7 @@ const About = () => {
               >
                 <div className="bg-white rounded-md p-6">
                   <motion.img
-                    src="/lovable-uploads/567b9a5f-e68f-4b1d-ae1b-195f06326b3d.png"
+                    src="/lovable-uploads/profile.jpg"
                     alt="Profile"
                     className="rounded-md w-full h-auto shadow-lg"
                     initial={{ opacity: 0, scale: 0.9 }}
