@@ -222,7 +222,7 @@ const Projects = () => {
             variant="outline"
             className="border-primary text-primary hover:bg-primary/10 px-8 py-3"
             onClick={() =>
-              window.open("https://github.com/joaosilva", "_blank")
+              window.open("https://github.com/bezerraluiz", "_blank")
             }
           >
             <Github size={20} className="mr-2" />
