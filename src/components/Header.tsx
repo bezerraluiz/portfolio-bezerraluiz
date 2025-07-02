@@ -1,8 +1,7 @@
-
-import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useTheme } from './ThemeProvider';
+import React, { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,26 +13,26 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { label: 'Início', href: '#hero' },
-    { label: 'Sobre', href: '#about' },
-    { label: 'Projetos', href: '#projects' },
-    { label: 'Habilidades', href: '#skills' },
-    { label: 'Contato', href: '#contact' },
+    { label: "Início", href: "#hero" },
+    { label: "Sobre", href: "#about" },
+    { label: "Projetos", href: "#projects" },
+    { label: "Habilidades", href: "#skills" },
+    { label: "Contato", href: "#contact" },
   ];
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
   };
@@ -42,14 +41,14 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm'
-          : 'bg-transparent'
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
+          : "bg-transparent"
       }`}
     >
       <nav className="container-max section-padding">
         <div className="flex items-center justify-between h-16">
           <div className="text-2xl font-bold text-gradient">
-            João Silva
+            Luiz Antônio Bezerra
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -63,14 +62,14 @@ const Header = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
-            
+
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
               className="text-muted-foreground hover:text-primary"
             >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </Button>
           </div>
 
@@ -81,9 +80,9 @@ const Header = () => {
               onClick={toggleTheme}
               className="text-muted-foreground hover:text-primary"
             >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </Button>
-            
+
             <Button
               variant="ghost"
               size="sm"
