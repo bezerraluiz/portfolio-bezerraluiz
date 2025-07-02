@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { useTheme } from './ThemeProvider';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useTheme } from './ThemeProvider';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,49 +42,46 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/80 backdrop-blur-md border-b border-border'
+          ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm'
           : 'bg-transparent'
       }`}
     >
       <nav className="container-max section-padding">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <div className="text-2xl font-bold text-gradient">
             João Silva
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
+                className="text-muted-foreground hover:text-primary transition-colors duration-200 font-medium relative group"
               >
                 {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
             
-            {/* Theme Toggle */}
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className="border-primary/20 hover:bg-primary/10"
+              className="text-muted-foreground hover:text-primary"
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className="border-primary/20 hover:bg-primary/10"
+              className="text-muted-foreground hover:text-primary"
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </Button>
             
             <Button
@@ -98,15 +95,14 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-border mt-2 py-4 rounded-lg">
+          <div className="md:hidden bg-background/95 backdrop-blur-md border border-border mt-2 py-4 rounded-lg shadow-lg">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-left text-muted-foreground hover:text-primary transition-colors duration-200 font-medium px-2 py-1"
+                  className="text-left text-muted-foreground hover:text-primary transition-colors duration-200 font-medium px-4 py-2"
                 >
                   {item.label}
                 </button>

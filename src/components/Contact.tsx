@@ -1,10 +1,11 @@
 
 import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,6 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate form submission
     setTimeout(() => {
       toast({
         title: "Mensagem Enviada!",
@@ -38,19 +38,19 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: "📧",
+      icon: Mail,
       title: "Email",
       value: "joao.silva@email.com",
       link: "mailto:joao.silva@email.com"
     },
     {
-      icon: "📱",
+      icon: Phone,
       title: "WhatsApp",
       value: "+55 (11) 99999-9999",
       link: "https://wa.me/5511999999999"
     },
     {
-      icon: "📍",
+      icon: MapPin,
       title: "Localização",
       value: "São Paulo, SP - Brasil",
       link: null
@@ -58,116 +58,113 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    {
-      name: "GitHub",
-      url: "https://github.com/joaosilva",
-      icon: "🐙"
-    },
-    {
-      name: "LinkedIn",
-      url: "https://linkedin.com/in/joaosilva",
-      icon: "💼"
-    },
-    {
-      name: "Twitter",
-      url: "https://twitter.com/joaosilva",
-      icon: "🐦"
-    },
-    {
-      name: "Instagram",
-      url: "https://instagram.com/joaosilva",
-      icon: "📸"
-    }
+    { name: "GitHub", url: "https://github.com/joaosilva", icon: Github },
+    { name: "LinkedIn", url: "https://linkedin.com/in/joaosilva", icon: Linkedin },
+    { name: "Twitter", url: "https://twitter.com/joaosilva", icon: Twitter },
+    { name: "Instagram", url: "https://instagram.com/joaosilva", icon: Instagram }
   ];
 
   return (
     <section id="contact" className="py-20">
       <div className="container-max section-padding">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Entre em <span className="text-primary">Contato</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Vamos conversar sobre seu próximo projeto! Estou sempre aberto a novas oportunidades e desafios
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-semibold mb-6 text-primary">Informações de Contato</h3>
               
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <Card key={index} className="border-primary/20 hover:border-primary/40 transition-colors">
-                    <CardContent className="p-4">
-                      <div className="flex items-center space-x-4">
-                        <span className="text-2xl">{info.icon}</span>
-                        <div>
-                          <div className="font-medium text-primary">{info.title}</div>
-                          {info.link ? (
-                            <a 
-                              href={info.link} 
-                              className="text-muted-foreground hover:text-primary transition-colors"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {info.value}
-                            </a>
-                          ) : (
-                            <div className="text-muted-foreground">{info.value}</div>
-                          )}
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => {
+                  const IconComponent = info.icon;
+                  return (
+                    <Card key={index} className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+                      <CardContent className="p-6">
+                        <div className="flex items-center space-x-4">
+                          <div className="p-3 bg-primary/10 rounded-full">
+                            <IconComponent className="w-6 h-6 text-primary" />
+                          </div>
+                          <div>
+                            <div className="font-semibold text-primary text-lg">{info.title}</div>
+                            {info.link ? (
+                              <a 
+                                href={info.link} 
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {info.value}
+                              </a>
+                            ) : (
+                              <div className="text-muted-foreground">{info.value}</div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Social Media */}
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-primary">Redes Sociais</h3>
-              <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    size="lg"
-                    className="border-primary/20 hover:bg-primary/10 hover:border-primary/40"
-                    onClick={() => window.open(social.url, '_blank')}
-                  >
-                    <span className="mr-2 text-lg">{social.icon}</span>
-                    {social.name}
-                  </Button>
-                ))}
+              <h3 className="text-xl font-semibold mb-6 text-primary">Redes Sociais</h3>
+              <div className="grid grid-cols-2 gap-4">
+                {socialLinks.map((social, index) => {
+                  const IconComponent = social.icon;
+                  return (
+                    <Button
+                      key={index}
+                      variant="outline"
+                      className="border-primary/20 hover:bg-primary/10 hover:border-primary/40 h-12 justify-start"
+                      onClick={() => window.open(social.url, '_blank')}
+                    >
+                      <IconComponent className="w-5 h-5 mr-3 text-primary" />
+                      {social.name}
+                    </Button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Availability */}
             <Card className="bg-primary/5 border-primary/20">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-2 text-primary">Disponibilidade</h3>
-                <p className="text-muted-foreground">
-                  ✅ Disponível para novos projetos
-                  <br />
-                  ⏰ Resposta em até 24 horas
-                  <br />
-                  🌍 Trabalho remoto ou presencial (São Paulo)
-                </p>
+                <h3 className="text-lg font-semibold mb-3 text-primary">Disponibilidade</h3>
+                <div className="space-y-2 text-muted-foreground">
+                  <p className="flex items-center">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    Disponível para novos projetos
+                  </p>
+                  <p className="flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Resposta em até 24 horas
+                  </p>
+                  <p className="flex items-center">
+                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                    Trabalho remoto ou presencial (São Paulo)
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Contact Form */}
           <div>
-            <Card className="border-primary/20">
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-6 text-primary">Envie uma Mensagem</h3>
-                
+            <Card className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
+              <CardHeader>
+                <h3 className="text-2xl font-semibold text-primary">Envie uma Mensagem</h3>
+                <p className="text-muted-foreground">
+                  Preencha o formulário abaixo e entrarei em contato o mais breve possível.
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>

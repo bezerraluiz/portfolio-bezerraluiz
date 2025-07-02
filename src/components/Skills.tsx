@@ -61,36 +61,36 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 bg-muted/30">
       <div className="container-max section-padding">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Minhas <span className="text-primary">Habilidades</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Tecnologias e ferramentas que domino para criar soluções completas e eficientes
           </p>
         </div>
 
-        {/* Skills Grid */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
           {skillCategories.map((category, categoryIndex) => (
-            <Card key={categoryIndex} className="border-primary/20 hover:border-primary/40 transition-colors">
+            <Card key={categoryIndex} className="border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
               <CardContent className="p-6">
                 <div className="flex items-center mb-6">
-                  <span className="text-2xl mr-3">{category.icon}</span>
-                  <h3 className="text-xl font-semibold text-primary">{category.title}</h3>
+                  <span className="text-3xl mr-4">{category.icon}</span>
+                  <h3 className="text-2xl font-semibold text-primary">{category.title}</h3>
                 </div>
                 
                 <div className="space-y-6">
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="space-y-2">
+                    <div key={skillIndex} className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-sm text-primary font-semibold">{skill.level}%</span>
+                        <span className="font-semibold text-lg">{skill.name}</span>
+                        <span className="text-sm text-primary font-bold bg-primary/10 px-2 py-1 rounded">
+                          {skill.level}%
+                        </span>
                       </div>
-                      <Progress value={skill.level} className="h-2" />
-                      <p className="text-sm text-muted-foreground">{skill.description}</p>
+                      <Progress value={skill.level} className="h-3" />
+                      <p className="text-sm text-muted-foreground leading-relaxed">{skill.description}</p>
                     </div>
                   ))}
                 </div>
@@ -99,13 +99,12 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Additional Skills */}
         <div className="text-center">
           <h3 className="text-2xl font-semibold mb-8">
             Competências <span className="text-primary">Adicionais</span>
           </h3>
           
-          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
             {additionalSkills.map((skill, index) => (
               <span 
                 key={index}
@@ -117,26 +116,25 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Experience Summary */}
         <div className="mt-16 grid md:grid-cols-3 gap-8">
-          <Card className="text-center border-primary/20">
+          <Card className="text-center border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
             <CardContent className="p-6">
-              <div className="text-3xl font-bold text-primary mb-2">5+</div>
-              <div className="text-muted-foreground">Anos de Experiência</div>
+              <div className="text-4xl font-bold text-primary mb-2">5+</div>
+              <div className="text-muted-foreground font-medium">Anos de Experiência</div>
             </CardContent>
           </Card>
           
-          <Card className="text-center border-primary/20">
+          <Card className="text-center border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
             <CardContent className="p-6">
-              <div className="text-3xl font-bold text-primary mb-2">15+</div>
-              <div className="text-muted-foreground">Tecnologias Dominadas</div>
+              <div className="text-4xl font-bold text-primary mb-2">15+</div>
+              <div className="text-muted-foreground font-medium">Tecnologias Dominadas</div>
             </CardContent>
           </Card>
           
-          <Card className="text-center border-primary/20">
+          <Card className="text-center border-primary/20 hover:border-primary/40 transition-all hover:shadow-lg">
             <CardContent className="p-6">
-              <div className="text-3xl font-bold text-primary mb-2">100%</div>
-              <div className="text-muted-foreground">Dedicação aos Projetos</div>
+              <div className="text-4xl font-bold text-primary mb-2">100%</div>
+              <div className="text-muted-foreground font-medium">Dedicação aos Projetos</div>
             </CardContent>
           </Card>
         </div>

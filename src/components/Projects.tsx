@@ -1,7 +1,9 @@
+
 import React from 'react';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Github, ExternalLink } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
@@ -71,48 +73,74 @@ const Projects = () => {
   const otherProjects = projects.filter(project => !project.featured);
 
   const ProjectCard = ({ project, featured = false }: { project: any, featured?: boolean }) => (
-    <Card className={`group overflow-hidden border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg ${featured ? 'lg:col-span-2' : ''}`}>
+    <Card className={`group overflow-hidden border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl ${featured ? 'md:col-span-2' : ''}`}>
       <div className="relative overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+          className={`w-full object-cover transition-transform duration-300 group-hover:scale-105 ${featured ? 'h-64' : 'h-48'}`}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              variant="secondary"
+              className="bg-white/90 hover:bg-white text-black"
+              onClick={() => window.open(project.githubUrl, '_blank')}
+            >
+              <Github size={16} />
+            </Button>
+            {project.liveUrl && (
+              <Button
+                size="sm"
+                className="bg-primary hover:bg-primary/90"
+                onClick={() => window.open(project.liveUrl, '_blank')}
+              >
+                <ExternalLink size={16} />
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
       
-      <CardContent className="p-6">
-        <h3 className="text-xl font-semibold mb-3 text-primary group-hover:text-primary/80 transition-colors">
+      <CardHeader className="pb-3">
+        <h3 className="text-xl font-semibold text-primary group-hover:text-primary/80 transition-colors">
           {project.title}
         </h3>
+      </CardHeader>
+
+      <CardContent className="pb-4">
         <p className="text-muted-foreground mb-4 leading-relaxed">
           {project.description}
         </p>
         
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech: string, index: number) => (
-            <Badge key={index} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
+            <Badge key={index} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20">
               {tech}
             </Badge>
           ))}
         </div>
       </CardContent>
       
-      <CardFooter className="p-6 pt-0 flex gap-3">
+      <CardFooter className="pt-0 flex gap-3">
         <Button 
           variant="outline" 
           size="sm" 
-          className="border-primary/20 text-primary hover:bg-primary/10"
+          className="border-primary/20 text-primary hover:bg-primary/10 flex-1"
           onClick={() => window.open(project.githubUrl, '_blank')}
         >
+          <Github size={16} className="mr-2" />
           Código
         </Button>
         {project.liveUrl && (
           <Button 
             size="sm"
-            className="bg-primary hover:bg-primary/90"
+            className="bg-primary hover:bg-primary/90 flex-1"
             onClick={() => window.open(project.liveUrl, '_blank')}
           >
+            <ExternalLink size={16} className="mr-2" />
             Ver Projeto
           </Button>
         )}
@@ -123,28 +151,25 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20">
       <div className="container-max section-padding">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Meus <span className="text-primary">Projetos</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Uma seleção dos projetos que desenvolvi, desde aplicações web completas até APIs robustas
           </p>
         </div>
 
-        {/* Featured Projects */}
         <div className="mb-16">
           <h3 className="text-2xl font-semibold mb-8 text-center">Projetos em Destaque</h3>
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} featured={true} />
             ))}
           </div>
         </div>
 
-        {/* Other Projects */}
         <div>
           <h3 className="text-2xl font-semibold mb-8 text-center">Outros Projetos</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -154,7 +179,6 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="text-center mt-16">
           <Button 
             size="lg"
@@ -162,6 +186,7 @@ const Projects = () => {
             className="border-primary text-primary hover:bg-primary/10 px-8 py-3"
             onClick={() => window.open('https://github.com/joaosilva', '_blank')}
           >
+            <Github size={20} className="mr-2" />
             Ver Mais no GitHub
           </Button>
         </div>
