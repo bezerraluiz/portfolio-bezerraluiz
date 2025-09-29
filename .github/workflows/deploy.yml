@@ -1,16 +1,12 @@
 name: Deploy to GitHub Pages
 
-permissions:
-  contents: write
-
-with:
-  fetch-depth: 0
-  persist-credentials: true
-
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -28,10 +24,14 @@ jobs:
           node-version: '18'
 
       - name: Install
-        run: npm ci
+        run: |
+          npm ci
+        if: success()
 
       - name: Build
-        run: npm run build
+        run: |
+          npm run build
+        if: success()
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -39,3 +39,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
+        if: success()
