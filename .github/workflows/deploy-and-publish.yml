@@ -1,4 +1,4 @@
-name: Build and Deploy on Main
+name: Build and Deploy to gh-pages
 
 on:
   push:
@@ -36,13 +36,16 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Main Branch
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add -f dist
-          git commit -m "Deploy build to main branch" || echo "No changes to commit"
-          git push origin main
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          user_name: 'github-actions'
+          user_email: 'github-actions@github.com'
+          keep_files: false
+          allow_empty_commit: true
 
       - name: Verify build output
         run: ls -la ./dist
