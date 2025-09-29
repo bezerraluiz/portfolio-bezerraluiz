@@ -1,0 +1,30 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # ou a branch que você usa para desenvolvimento
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # ou a versão que você usa
+
+      - name: Install dependencies
+        run: npm install  # ou yarn install, dependendo do seu projeto
+
+      - name: Build project
+        run: npm run build  # ou o comando que você usa para build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # ou o diretório onde o build é gerado
