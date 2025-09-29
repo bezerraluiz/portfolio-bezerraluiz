@@ -40,3 +40,6 @@ jobs:
           publish_dir: ./dist
           publish_branch: gh-pages
         if: success()
+
+      - name: Show Portfolio URL
+        run: echo "Portfolio deployed at: https://bezerraluz.github.io/portfolio-bezerraluz/"
