@@ -1,0 +1,21 @@
+name: Publish GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Publish GitHub Actions
+        run: |
+          echo "Publishing GitHub Actions..."
+          # Aqui você pode adicionar comandos para publicar ou validar as alterações nos workflows
+          # Por exemplo, rodar testes, validar sintaxe, ou qualquer outro passo necessário
+          # Se for necessário, adicione comandos específicos para publicar as alterações
+          echo "Publicação concluída."
