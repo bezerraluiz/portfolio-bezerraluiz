@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const About = () => {
-  const skills = ["Java", "React.js", "JavaScript", "SQL", "Git"];
+  const skills = ["Java", "Node.js", "React.js", "JavaScript", "SQL", "Git"];
 
   const techStack = [
     {
@@ -18,12 +18,12 @@ const About = () => {
     },
     {
       category: "Backend",
-      techs: ["Node.js", "Java", "Spring Boot", "Maven", "Fastify"],
+      techs: ["Node.js", "NestJS", "Fastify", "Java", "Spring Boot", "Maven"],
       icon: "⚙️",
     },
     {
       category: "Database",
-      techs: ["PostgreSQL", "MongoDB", "Prisma"],
+      techs: ["PostgreSQL", "MongoDB", "Prisma", "Supabase"],
       icon: "🗄️",
     },
     {
